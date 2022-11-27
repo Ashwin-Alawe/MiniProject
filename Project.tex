@@ -1,0 +1,394 @@
+\documentclass[12pt,a4 paper]{article}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Bank Management System}
+
+\begin{document}
+\maketitle
+\begin{center}
+\textbf{Project Report}
+\end{center}
+\section{Introduction}
+The “Bank Account Management System” project is a model Internet Banking Site. This site enables the customers to perform the basic banking transactions by sitting at their office or at homes through PC or laptop. The system provides the access to the customer to create an account, deposit/withdraw the cash from his account, also to view reports of all accounts present. The customers can access the banks website for viewing their Account details and perform the transactions on account as per their requirements. With Internet Banking, the brick and mortar structure of the traditional banking gets converted into a click and portal model, thereby giving a concept of virtual banking a real shape. Thus today's banking is no longer confined to branches. E-banking facilitates banking transactions by customers round the clock globally. 
+\section{Objective of Project}
+A computer based management system is designed to handle all the primary information required to calculate monthly statements of customer account which include monthly statements of customer account which include monthly statement of any month. Separate database is maintained to handle all the details required for the correct statement calculation and generation.\\
+\\
+The main objective of our project is providing the different typed of customers facility, the main objective of this system is to find out the actual customer service.Etc.\\
+\begin{itemize}
+\item It should fulfill almost all the process requirement of any Bank. 
+\item It should increase the productivity of bank by utilizing the working hours more and more, with minimum manpower.
+\end{itemize}
+\section{Function description}
+The source code for the Bank Management System for Customer Accounts is reasonably short and simple to comprehend. This C mini project is separated into many functions, most of which are connected to various financial operations. Some of the most critical functionalities are listed below to assist you better understand the project.
+\begin{enumerate}
+\item \textbf{login():} In this project you have first login in your account. This is function is for login.
+\item\textbf{list():} This function shows a menu or welcome screen that allows you to execute the various banking tasks listed below.
+\item\textbf{balanceinqury():}This function allows users to see their account balance.
+\item\textbf{deposit():}This function will allow user to deposit money in their account.
+\item\textbf{withdraw():}This function allows user to withdraw money from account.
+\item\textbf{transferammount():} In this functions help user can transfer money from their account to another account.
+\item\textbf{accountdetails():} This function shows detail of users account.
+\item\textbf{accounthistory():} This function shows recently transaction of their account.
+\item\textbf{logout():} This function allows user to logout from their account.\\
+\item\textbf{end():} This function allows user to exit from project.\\
+\end{enumerate}
+\newpage
+\section{GDB activity:} 
+\begin{figure}
+\includegraphics[scale=0.3]{../../../../Pictures/Screenshots/Screenshot (184).png} 
+\caption{}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.4]{../../../../Pictures/Screenshots/Screenshot (185).png} 
+\caption{}
+\end{figure}
+Command used for Debug program:
+\begin{figure}
+\includegraphics[scale=1]{../../../../Pictures/Screenshots/Screenshot (187).png} 
+\caption{}
+\end{figure}
+\newpage
+\section{Code in C:}
+\#include\textlangle stdio.h \textrangle  \\
+\#include\textlangle conio.h \textrangle    \\
+\#include\textlangle stdlib.h\textrangle  \\
+void login();\\
+void list();\\
+void balanceinqury();\\
+void deposit();\\
+void withdraw();\\
+void transferamount();\\
+void accountdetails();\\
+void accounthistory();\\
+void logout();\\
+void end();\\
+
+int ch,totalamount=10000,depoamo,withamo,transamo;\\
+int totaldepo=0,totalwith=0,totaltrans=0;\\
+int transferd;\\
+int acc,pass;\\
+char a[50];       //global variables\\
+
+int main()\\
+{
+ system("cls");\\
+ login();\\
+ while(1)\\
+ {\\
+   system("cls");\\
+   list();\\
+   printf("Enter your choice : ");\\
+   scanf("%d", &ch); \\
+   switch(ch)\\
+   {\\
+   	 case 1:\\
+     	balanceinqury();\\
+     	break;\\
+     case 2:\\
+        deposit();\\
+        totaldepo+=depoamo;\\
+        break;\\
+     case 3:\\
+        withdraw();\\
+        if (withamo<=totalamount)\\
+            totalwith+=withamo;\\
+        break;\\
+     case 4:\\
+        transferamount();\\
+        if (transamo<=totalamount);\\
+            totaltrans+=transamo;\\
+        break;\\
+     case 5:\\
+     	accounthistory();\\
+     	break;\\
+     case 6:\\
+        accountdetails();\\
+        break;\\
+     case 7:\\
+        system("CLS");\\
+        end();\\
+        getch();\\
+        exit(0);\\
+     case 8:\\
+     	logout();\\
+     	break;\\
+        
+     default:\\
+        printf("------ Invalid Choice ------");\\
+        printf("Press any key to choose again..");\\
+        getch();\\
+        break;\\
+    }//end of switch\\
+   getch();\\
+  }//end of while\\
+}\\
+\\
+void login()         //for login in account\\
+{\\
+	  printf("WELCOME TO BANK MANAGEMENT SYSTEM");\\
+    printf("Enter your name: ");\\
+    gets(a);\\
+    printf("Enter your account number: ");\\
+    scanf("\%d",acc);\\
+    while(1)\\
+    {\\
+    printf("Enter password:");\\
+    scanf("\%d",pass);\\
+    if(pass==12345){\\
+    printf("Login success..");\\
+    printf("Press any key to continue..");\\
+    break;}\\
+   else  {\\
+    printf(" Wrong Password..");\\
+    printf("Please try again..");}\\
+    }\\
+}   \\
+\\
+void list()              //for list of features\\
+{\\
+  printf("WELCOME TO BANK MANAGEMENT SYSTEM");\\
+  printf("What do you want to do..");\\
+  printf("1. Check Balance");\\
+  printf("2. Deposit Amount");\\
+  printf("3. Withdraw Amount");\\
+  printf("4. Transfer Amount");\\
+  printf("5. Account History");\\
+  printf("6. Check details");\\
+  printf("7. Exit");\\
+  printf("8. Logout");\\
+}\\
+void balanceinqury()        //for checking account balance\\
+{\\
+	printf("Total balance: %d",totalamount);\\
+	printf("Press any key to continue..");\\
+}\\
+
+void deposit()               //for money deposit in account\\ 
+{\\
+    printf("Enter the amount you want to Deposit: ");\\
+    scanf("\%d",depoamo);  \\
+    totalamount+=depoamo;\\
+    printf("Amount added Succsessfully...");\\
+    printf("Press any key to continue..");\\
+}\\
+void withdraw()               //for money withdraw from account\\
+{\\
+  while (1)\\
+  {\\
+  
+    printf("Enter the amount you want to Withdraw: ");\\
+    scanf("\%d",withamo);\\
+      if (withamo<=totalamount){\\
+        totalamount-=withamo;\\
+        printf("Amount withdraw Succsessfully...");\\
+        printf("Press any key to continue..");\\
+        break;}\\
+      else{\\
+        printf("Withdraw failed..");\
+        printf("------ Insufficient Balance ------");}\\
+  }\\
+}\\
+void transferamount()          //for money transfer\\
+{\\
+     
+    while (1)\\
+    {\\
+      printf("Enter the amount you want to Transfer: ");\\
+      scanf("\%d",transamo);  \\
+      if (transamo<=totalamount){\\
+        totalamount-=transamo;\\
+        printf("Enter Account no. where you want to transfer\\ Money: ");\\
+        scanf("\%d",transferd);\\
+        printf("Amount transfered Succsessfully...");\\
+        printf("Press any key to choose again..");\\
+        break;}\\
+      else{\\
+        printf("Transfer failed..");\\
+        printf("------ Insufficient Balance ------");}\\
+    }\\
+}\\
+void accountdetails()            //for account details\\
+{\\
+	printf("Your Name=%s",a);\\
+    printf("Account Number=%d",acc);\\
+    printf("Total Amount=%d",totalamount);\\ 
+    printf("Total Deposited Amount=%d",totaldepo);\\ 
+    printf("Total Withdrawn Amount=%d",totalwith); \\
+    printf("Total Transfered Amount=%d",totaltrans); \\
+    printf("Press any key to continue..");\\
+}\\
+void accounthistory()            //for cheking account history\\
+{\\
+	printf("Your account history");\\
+    printf("Total Deposited Amount=\%d",totaldepo);\\ 
+    printf("Total Withdrawn Amount=\%d",totalwith); \\
+    printf("Total Transfered Amount=\%d",totaltrans);\\ 
+    printf("Press any key to continue..");	\\
+}\\
+void logout()                    //for logout from account\\ 
+ {\\
+	system("cls");\\
+	printf("Logout successfull..");\\
+	login();\\
+}\\
+void end()                        //for exit from program\\
+{\\
+    printf("------------------------------------");\\
+    printf("Your Name=\%s",a);\\
+    printf("Account Number=\%d",acc);\\
+    printf("Total Amount=\%d",totalamount);\\ 
+    printf("Total Deposited Amount=\%d",totaldepo);\\
+    printf("Total Withdrawn Amount=\%d",totalwith); \\
+    printf("Total Transfered Amount=\%d",totaltrans); \\
+    printf("**************Thanks****************"); \\
+}
+\newpage
+\section{Code in Python}
+import os\\
+i=1\\
+totalamount=10000\\
+totaldepo=0\\
+totalwith=0\\
+totaltrans=0\\
+os.system('cls')\\
+\\
+def login():\\
+ print("WELCOME TO ONLINE BANKING SYSTEM")\\
+ name = input("Enter your name: ")\\
+ acc = int(input("Enter your account number: "))\\
+\\
+ while 1 in i:\\
+    password =int(input("Enter password:"))\\
+    if(password==12345):\\
+      print("Login success..")\\
+      print("Press any key to continue..")\\
+      break\\
+    else :\\
+      print(" Wrong Password..")\\
+\\
+
+def list() :\\      
+  print("WELCOME TO ONLINE BANKING SYSTEM")\\
+  print("What do you want to do..")\\
+  print("1. Check Balance")\\
+  print("2. Deposit Amount")\\
+  print("3. Withdraw Amount")\\
+  print("4. Transfer Amount")\\
+  print("5. Account History")\\
+  print("6. Check details")\\
+  print("7. Exit")\\
+  print("8. Logout")\\
+  \\
+
+def balanceinqury():\\
+	print("Total balance: ",totalamount)\\
+	print("Press any key to continue..")\\
+  \\
+
+def deposit():\\
+    depoamo = input("Enter the amount you want to Deposit: ")\\
+    totalamount+=depoamo\\
+    totaldepo+=depoamo\\
+    print("Amount added Succsessfully...")\\
+    print("Press any key to continue..")\\
+\\
+def withdraw():\\
+  while 1 in i:\\
+    withamo = input("Enter the amount you want to Withdraw: ")
+    if (withamo<=totalamount):\\
+        totalamount-=withamo\\
+        totalwith+=withamo\\
+        print("Amount withdraw Succsessfully...")\\
+        print("Press any key to continue..")\\
+        break\\
+    else:\\ 
+        print("Withdraw failed..")\\
+        print("------ Insufficient Balance ------")\\
+\\
+def transferamount():\\
+     \\
+    while 1 in i:\\
+      transamo = input("Enter the amount you want to Transfer: ")\\
+      if (transamo<=totalamount):\\
+        totalamount-=transamo\\
+        totaltrans+=transamo\\
+        transacc = int(input("Enter Account no. where you want to transfer Money:"))\\
+        print("Amount transfered Succsessfully...")\\
+        print("Press any key to choose again..")\\
+        break\\
+      else:\\
+        print("Transfer failed..")\\
+        print("------ Insufficient Balance ------")\\
+\\
+def accountdetails():\\
+	print("Your Name= ",name)\\
+  print("Account Number= ",acc)\\
+  print("Total Amount= ",totalamount)\\ 
+  print("Total Deposited Amount= ",totaldepo)\\ 
+  print("Total Withdrawn Amount= ",totalwith)\\ 
+  print("Total Transfered Amount= ",totaltrans)\\ 
+  print("Press any key to continue..")\\
+\\
+def accounthistory():\\
+	print("Your account history")
+  print("Total Deposited Amount= ",totaldepo)\\ 
+  print("Total Withdrawn Amount= ",totalwith)\\
+  print("Total Transfered Amount= ",totaltrans)\\ 
+  print("Press any key to continue..")\\
+\\
+def logout():\\
+	print("Logout successfull..")
+	login()\\
+\\
+def end():\\
+  os.system('cls')\\
+  print("------------------------------------")\\
+  print("Your Name= ",name)\\
+  print("Account Number= ",acc)\\
+  print("Total Amount= ",totalamount)\\ 
+  print("Total Deposited Amount= ",totaldepo)\\
+  print("Total Withdrawn Amount= ",totalwith)\\
+  print("Total Transfered Amount= ",totaltrans)\\ 
+  print("**************Thanks****************")\\
+  exit()\\
+
+def default():\\
+  print("------ Invalid Choice ------")\\
+  print("Press any key to choose again..")\\
+\\
+login()\\
+while 1 in i:\\
+ os.system('cls')\\
+ list()\\
+ ch = int(input("Enter your choice : "))\\
+ operations = {\\
+    1:balanceinqury,\\
+    2:deposit,\\
+    3:withdraw,\\
+    4:transferamount,\\
+    5:accounthistory,\\
+    6:accountdetails,\\
+    7:end,\\
+    8:logout,\\
+  }\\
+ operations.get(ch,default)()\\
+
+
+\textbf{Output Screenshots:}\\
+\includegraphics[scale=0.7]{../../../../Pictures/Screenshots/Screenshot (188).png} 
+\includegraphics[scale=0.7]{../../../../Pictures/Screenshots/Screenshot (189).png} 
+\newline
+\includegraphics[scale=0.7]{../../../../Pictures/Screenshots/Screenshot (190).png}
+\includegraphics[scale=0.7]{../../../../Pictures/Screenshots/Screenshot (191).png} 
+\includegraphics[scale=0.7]{../../../../Pictures/Screenshots/Screenshot (192).png} 
+\includegraphics[scale=0.7]{../../../../Pictures/Screenshots/Screenshot (193).png} 
+\includegraphics[scale=0.7]{../../../../Pictures/Screenshots/Screenshot (194).png} 
+\end{document}
+\includegraphics[scale=0.7]{../../../../Pictures/Screenshots/Screenshot (195).png} 
+\includegraphics[scale=0.7]{../../../../Pictures/Screenshots/Screenshot (196).png}
+\caption{}
+\end{document}
